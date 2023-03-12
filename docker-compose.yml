@@ -27,7 +27,7 @@ services:
       context: ./election-management
       # dockerfile: src/main/docker/Dockerfile.native
       dockerfile: src/main/docker/Dockerfile.jvm
-    image: dio/election-management:1.0.0
+    image: dio/election-management:${TAG:-1.0.0}
     labels:
       - traefik.http.routers.election-management.rule=Host(`vote.dio.localhost`) && PathPrefix(`/api`)
       - traefik.http.routers.election-management.entrypoints=web
@@ -40,7 +40,7 @@ services:
       context: ./voting-app
       # dockerfile: src/main/docker/Dockerfile.native
       dockerfile: src/main/docker/Dockerfile.jvm
-    image: dio/voting-app:1.0.0
+    image: dio/voting-app:${TAG:-1.0.0}
     labels:
       - traefik.http.routers.voting-app.rule=Host(`vote.dio.localhost`) && Method(`POST`)
       - traefik.http.routers.voting-app.entrypoints=web
@@ -53,7 +53,7 @@ services:
       context: ./result-app
       # dockerfile: src/main/docker/Dockerfile.native
       dockerfile: src/main/docker/Dockerfile.jvm
-    image: dio/result-app:1.0.0
+    image: dio/result-app:${TAG:-1.0.0}
     labels:
       - traefik.http.routers.result-app.rule=Host(`vote.dio.localhost`) && Method(`GET`)
       - traefik.http.routers.result-app.entrypoints=web
