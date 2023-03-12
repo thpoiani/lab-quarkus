@@ -1,0 +1,12 @@
+services:
+  quarkus:
+    environment:
+      - QUARKUS_LOG_HANDLER_GELF_HOST=graylog
+      - QUARKUS_OPENTELEMETRY_TRACER_EXPORTER_OTLP_ENDPOINT=http://jaeger:4317
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail localhost:8080/q/health || exit 1"]
+      interval: 5s
+      timeout: 1s
+      retries: 5
+    labels:
+      - traefik.enable=true
