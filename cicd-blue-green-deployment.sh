@@ -21,5 +21,5 @@ until [ "`docker ps -q -f "name=${APP}" -f "health=healthy" | wc -l | xargs`" ==
 done;
 
 if [[ $BLUE_CONTAINERS_SCALE > 0 ]]; then
-    docker rm $BLUE_CONTAINERS --force
+    docker kill --signal=SIGTERM $BLUE_CONTAINERS
 fi
