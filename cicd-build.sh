@@ -2,7 +2,7 @@
 APP=$1
 ROOT=$(pwd)
 
-cd $APP
+cd "$APP"
 
 ./mvnw clean
 ./mvnw versions:set -DremoveSnapshot
@@ -13,7 +13,7 @@ APP_VERSION=$(./mvnw -q -Dexec.executable=echo -Dexec.args='${project.version}' 
 git add pom.xml
 git commit -m "cicd: bump version ${APP}:${APP_VERSION}"
 
-cd $ROOT
-TAG=$APP_VERSION docker compose build --no-cache $APP
+cd "$ROOT"
+TAG=$APP_VERSION docker compose build --no-cache "$APP"
 
 docker images "dio/${APP}"
