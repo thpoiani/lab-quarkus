@@ -66,8 +66,12 @@
       <artifactId>quarkus-jdbc-mariadb</artifactId>
     </dependency>
     <dependency>
-       <groupId>org.flywaydb</groupId>
-       <artifactId>flyway-mysql</artifactId>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-mysql</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-orm</artifactId>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
