@@ -27,7 +27,7 @@ public class SQLCandidateRepository implements CandidateRepository {
     public void save(List<Candidate> candidates) {
         candidates.stream()
                   .map(infrastructure.repositories.entities.Candidate::fromDomain)
-                  .forEach(entityManager::persist);
+                  .forEach(entityManager::merge);
     }
 
     @Override
