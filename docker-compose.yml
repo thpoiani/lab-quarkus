@@ -31,7 +31,7 @@ services:
     environment:
       - QUARKUS_DATASOURCE_USERNAME=election-management-user
       - QUARKUS_DATASOURCE_PASSWORD=election-management-password
-      - QUARKUS_DATASOURCE_JDBC_URL=jdbc:mariadb://database:3306/election-management
+      - QUARKUS_DATASOURCE_JDBC_URL=jdbc:otel:mariadb://database:3306/election-management
     labels:
       - traefik.http.routers.election-management.rule=Host(`vote.dio.localhost`) && PathPrefix(`/api`)
       - traefik.http.routers.election-management.entrypoints=web

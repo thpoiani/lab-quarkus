@@ -21,7 +21,7 @@ import java.util.List;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Path("/candidates")
+@Path("/api/candidates")
 public class CandidateResource {
     private final CandidateApi api;
 
