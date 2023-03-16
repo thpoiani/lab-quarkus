@@ -46,8 +46,10 @@ services:
       # dockerfile: src/main/docker/Dockerfile.native
       dockerfile: src/main/docker/Dockerfile.jvm
     image: dio/voting-app:${TAG:-1.0.0}
+    environment:
+      - QUARKUS_REDIS_HOSTS=redis://caching:6379
     labels:
-      - traefik.http.routers.voting-app.rule=Host(`vote.dio.localhost`) && Method(`POST`)
+      - traefik.http.routers.voting-app.rule=Host(`vote.dio.localhost`) && PathPrefix(`/api/voting`)
       - traefik.http.routers.voting-app.entrypoints=web
 
   result-app:
