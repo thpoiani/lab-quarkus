@@ -42,7 +42,7 @@ services:
       dockerfile: src/main/docker/Dockerfile.jvm
     image: dio/voting-app:${TAG:-1.0.0}
     labels:
-      - traefik.http.routers.voting-app.rule=Host(`vote.dio.localhost`) && Method(`POST`)
+      - traefik.http.routers.voting-app.rule=Host(`vote.dio.localhost`) && PathPrefix(`/api/voting`)
       - traefik.http.routers.voting-app.entrypoints=web
 
   result-app:
@@ -55,7 +55,7 @@ services:
       dockerfile: src/main/docker/Dockerfile.jvm
     image: dio/result-app:${TAG:-1.0.0}
     labels:
-      - traefik.http.routers.result-app.rule=Host(`vote.dio.localhost`) && Method(`GET`)
+      - traefik.http.routers.result-app.rule=Host(`vote.dio.localhost`) && Path(`/`)
       - traefik.http.routers.result-app.entrypoints=web
 
   # DATABASE - https://quarkus.io/guides/datasource
