@@ -42,20 +42,20 @@ public class SQLElectionRepository implements ElectionRepository {
         Stream<Object[]> stream = entityManager.createNativeQuery("SELECT e.id AS election_id, c.id AS candidate_id, c.photo, c.given_name, c.family_name, c.email, c.phone, c.job_title, ec.votes FROM elections AS e INNER JOIN election_candidate AS ec ON ec.election_id = e.id INNER JOIN candidates AS c ON ec.candidate_id = c.id")
                                                .getResultStream();
 
-        Map<String, List<Object[]>> map = stream.collect(groupingBy(o -> o[0].toString()));
+        Map<String, List<Object[]>> map = stream.collect(groupingBy(o -> (String) o[0]));
 
         return map.entrySet()
                   .stream()
                   .map(entry -> {
                       Map.Entry<Candidate, Integer>[] candidates = entry.getValue()
                                                                         .stream()
-                                                                        .map(row -> Map.entry(new Candidate(row[1].toString(),
-                                                                                                            Optional.ofNullable(row[2].toString()),
-                                                                                                            row[3].toString(),
-                                                                                                            row[4].toString(),
-                                                                                                            row[5].toString(),
-                                                                                                            Optional.ofNullable(row[6].toString()),
-                                                                                                            Optional.ofNullable(row[7].toString())),
+                                                                        .map(row -> Map.entry(new Candidate((String) row[1],
+                                                                                                            Optional.ofNullable((String) row[2]),
+                                                                                                            (String) row[3],
+                                                                                                            (String) row[4],
+                                                                                                            (String) row[5],
+                                                                                                            Optional.ofNullable((String) row[6]),
+                                                                                                            Optional.ofNullable((String) row[7])),
                                                                                               (Integer) row[8]))
                                                                         .toArray(Map.Entry[]::new);
 
