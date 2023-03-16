@@ -26,7 +26,7 @@ public class ElectionCandidate {
         this.votes = votes;
     }
 
-    public static Object fromDomain(domain.Election election, domain.Candidate candidate, Integer votes) {
+    public static ElectionCandidate fromDomain(domain.Election election, domain.Candidate candidate, Integer votes) {
         var entity = new ElectionCandidate();
 
         ElectionCandidateId id = new ElectionCandidateId();
